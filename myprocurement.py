@@ -33,15 +33,13 @@ class MyProcurementPage:
     def _scrape_page(self):
         page = self._get_page()
         soup = BeautifulSoup(page, 'lxml')
-        tables = soup.body.form.find_all("table", recursive=False)
 
         # Find table with data
-        main_table = tables[1]
+        main_table = soup.find("table", bordercolor="#000000")
         self._rows = main_table.find_all("tr", recursive=False)[1:]
 
         # Find "Akhir" link to determine if last page
-        nav_table = tables[2]
-        last_page_text = nav_table.find(string=re.compile(r"Akhir"))
+        last_page_text = soup.find(string=re.compile(r"Akhir"))
         last_page_button = last_page_text.find_parent("a")
         self.is_last_page = last_page_button is None
 
