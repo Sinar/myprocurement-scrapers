@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 import re
 import logging
 
@@ -46,5 +46,14 @@ class MyProcurementPage:
     def get_rows(self):
         for row in self._rows:
             tds = row.find_all("td", recursive=False)
-            data = [str(td.string).strip() for td in tds]
+            data = [br_to_newlines(td) for td in tds]
             yield data
+
+def br_to_newlines(element):
+    text = ""
+    for elem in element.recursiveChildGenerator():
+        if not isinstance(elem, Comment) and isinstance(elem, str):
+            text += elem.strip()
+        elif elem.name == "br":
+            text += "\n"
+    return text.strip()
