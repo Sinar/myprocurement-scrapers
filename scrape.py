@@ -1,11 +1,15 @@
 import requests_cache
 import json
 import logging
-from sys import argv
+import sys
 
 from myprocurement import MyProcurement
 
-config_filename = argv[1]
+if len(sys.argv) != 2:
+    sys.stderr.write("Usage: {} config_file.json\n".format(sys.argv[0]))
+    sys.exit()
+
+config_filename = sys.argv[1]
 with open(config_filename) as config_file:
     config = json.load(config_file)
 
