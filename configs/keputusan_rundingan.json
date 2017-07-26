@@ -1,0 +1,6 @@
+{
+    "project_name": "keputusan_rundingan",
+    "source_agency": "treasury",
+    "url": "http://myprocurement.treasury.gov.my/custom/p_keputusan_rundingan.php",
+    "columns": ["id", "title", "category", "ministry", "agency", "company", "value", "criteria", "date"]
+}
