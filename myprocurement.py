@@ -22,17 +22,17 @@ class MyProcurementPage:
     def __init__(self, base_url, page_num):
         self.base_url = base_url
         self.page_num = page_num
+        self._get_page()
         self._scrape_page()
 
     def _get_page(self):
         query = {'page': self.page_num}
         response = requests.get(self.base_url, query)
         self.url = response.url
-        return response.text
+        self.html = response.text
 
     def _scrape_page(self):
-        page = self._get_page()
-        soup = BeautifulSoup(page, 'lxml')
+        soup = BeautifulSoup(self.html, 'lxml')
 
         # Find table with data
         main_table = soup.find("table", bordercolor="#000000")
