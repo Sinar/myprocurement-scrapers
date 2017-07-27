@@ -1,0 +1,6 @@
+{
+    "project_name": "keputusan_tender_arkib_new",
+    "source_agency": "treasury",
+    "url": "http://myprocurement.treasury.gov.my/custom/p_keputusan_tender_arkib_new.php",
+    "columns": ["id", "title", "tender_number", "category", "ministry", "agency", "successful_tenderer", "agreed_price"]
+}
